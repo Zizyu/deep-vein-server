@@ -1,0 +1,17 @@
+{
+  "name": "deep-vein-multiplayer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DEEP VEIN browser horror game with Socket.IO multiplayer lobbies",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "socket.io": "^4.8.4"
+  }
+}
