@@ -237,6 +237,16 @@ io.on('connection', socket => {
     io.to(lobby.code).emit('world-state', worldView(lobby));
   });
 
+  socket.on('chat', d => {
+  const text = String((d && d.t) || '').slice(0, 120);
+  if (!text) return;
+  const room = [...socket.rooms].find(r => r !== socket.id);
+  if (room) socket.to(room).emit('chat', {
+    n: d.n, t: text, a: d.a, to: d.to,
+    id: socket.id, name: String(d.name || 'MINER').slice(0, 16)
+  });
+});
+
   socket.on('monster-state', data => {
     const lobby = findLobbyFor(socket);
     if (!lobby || lobby.status !== 'playing' || lobby.hostId !== socket.id || !data || typeof data !== 'object') return;
